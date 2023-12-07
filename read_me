@@ -1,0 +1,36 @@
+This repo contains 2 file user_controller.py and user_model.py
+This project uses a locally hosted mysql server which contains a table "Library" for simplicity i have only used 2 columns namely 'name' and 'body' , we can add more if we want to.
+
+user_controller.py
+This is basically a Flask application which serves as a basic API for managing a book library. The code establishes an API with four main endpoints:
+
+Home Route:
+The root endpoint ("/") greets users with a simple message "HELLO THIS IS AN API"
+
+Get All Books Route:
+The "/GET/api/books" endpoint retrieves and returns a list of all entries in the SQL database.This done using the user_getall() method of user_model.py
+Add One Book Route:
+The "/POST/api/books" endpoint is responsible for adding a new book to the library.This done using the user_addone() method of user_model.py
+Update One Book Route:
+The "/PUT/api/books/int:id" endpoint is designed for updating an existing book in the library.this is done using user_update() method of user_model.py
+The application employs the Flask web framework, which facilitates the handling of HTTP requests and responses. Additionally, it utilizes the request object to extract data from incoming requests. 
+
+
+user_model.py
+
+In this module we first establish a connection between to our sqlserver ,  then we define 3 different method user_getall() , user_update() , user_addone() . These function basically runs the sql queries using
+connnection.cursor attribute. 
+Some basic error handling.
+If the database is empty and we request a GET/api/books it send an error message as "NO DATA FOUND "
+in case of POST/api/books and PUT/api/books/{id} if the request doesnt have either a name or a body , then we send a error message back as response -- "ERROR: NAME AND BODY VALUES CANT BE EMPTY"
+
+
+
+Installation guide
+download all the three files , requirements.txt , user_controller.py , user_model.py
+!pip install requirements.txt
+then you can run the user_controller.py.
+
+I used post to send requests to the API.
+
+
